@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+<title>PyChat</title>
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon.png' %}">
+</head>
+<body>
+  <div class="content">
+    <div class="container brand">
+      <a href="{% url 'home' %}"><h1> PyChat 💬</h1></a>
+    </div>
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+        {{ message }}
+    </div>
+    {% endfor %}
+   
+   
+  
+  <div class="container">
+      <form id="post-form" method="POST" action="checkview">
+          {% csrf_token %}
+          <label>Room Name</label>
+          <input type="text" name="room_name" id="room_name" placeholder="Enter Room Name" width="100px" />
+          <label>Username</label>
+          <input type="text" name="username" id="username" placeholder="Enter Username" width="100px" />
+          <input type="submit" value="Enter Room">
+      </form>
+  </div>
+  </div>
+ 
+
+
+</body>
+
+
+</html>
