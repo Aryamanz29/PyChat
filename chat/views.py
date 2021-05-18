@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.http import  JsonResponse
 from .models import *
 from django.contrib import messages
+from datetime import date, datetime
 # Create your views here.
 
 def home(request):
@@ -35,7 +36,8 @@ def send(request):
     message = request.POST['message']
     username = request.POST['username']
     room_id = request.POST['room_id']
-    new_message = Message.objects.create(value=message, user=username, room=room_id)
+    custom_date = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    new_message = Message.objects.create(value=message,date=custom_date, user=username, room=room_id)
     new_message.save()
 
 def getMessages(request,room):
